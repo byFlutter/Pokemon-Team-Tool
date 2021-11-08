@@ -1,3 +1,5 @@
+[![CI](https://github.com/byFlutter/PokemonTeam-Tool/actions/workflows/tests.yml/badge.svg)](https://github.com/byFlutter/PokemonTeam-Tool/actions/workflows/tests.yml)
+
 # Pokémon-Team Tool
 
 Bereit für den Kampf?
