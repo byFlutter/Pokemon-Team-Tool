@@ -51,6 +51,15 @@ public class PokemonService {
         return transformEntity(pokemonEntity);
     }
 
+    public boolean deleteById(Long id) {
+        if (!pokemonRepository.existsById(id)) {
+            return false;
+        }
+
+        pokemonRepository.deleteById(id);
+        return true;
+    }
+
     private Pokemon transformEntity(PokemonEntity pokemonEntity) {
         return new Pokemon(
                 pokemonEntity.getId(),

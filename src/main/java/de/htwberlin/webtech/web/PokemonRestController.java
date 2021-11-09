@@ -43,4 +43,9 @@ public class PokemonRestController {
         return pokemon != null? ResponseEntity.ok(pokemon) : ResponseEntity.notFound().build();
     }
 
+    @DeleteMapping(path = "/api/v1/allPokemon/{id}")
+    public ResponseEntity<Void> deletePokemon(@PathVariable long id) {
+        boolean successful = pokemonService.deleteById(id);
+        return successful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
 }
