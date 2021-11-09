@@ -19,8 +19,7 @@ public class PokemonEntity {
     @Column(name = "is_evolved")
     private Boolean evolved;
 
-    public PokemonEntity(Long id, String name, String region, Boolean evolved) {
-        this.id = id;
+    public PokemonEntity(String name, String region, Boolean evolved) {
         this.name = name;
         this.region = region;
         this.evolved = evolved;
