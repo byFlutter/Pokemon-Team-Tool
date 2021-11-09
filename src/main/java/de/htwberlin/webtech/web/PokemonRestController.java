@@ -2,7 +2,7 @@ package de.htwberlin.webtech.web;
 
 import de.htwberlin.webtech.service.PokemonService;
 import de.htwberlin.webtech.web.api.Pokemon;
-import de.htwberlin.webtech.web.api.PokemonCreateRequest;
+import de.htwberlin.webtech.web.api.PokemonManipulationRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,9 +31,16 @@ public class PokemonRestController {
     }
 
     @PostMapping(path = "/api/v1/allPokemon")
-    public ResponseEntity<Void> createPokemon(@RequestBody PokemonCreateRequest request) throws URISyntaxException {
+    public ResponseEntity<Void> createPokemon(@RequestBody PokemonManipulationRequest request) throws URISyntaxException {
         var pokemon = pokemonService.create(request);
         URI uri = new URI("/api/v1/allPokemon/" + pokemon.getId());
         return ResponseEntity.created(uri).build();
     }
+
+    @PutMapping(path = "/api/v1/allPokemon/{id}")
+    public ResponseEntity<Pokemon> updatePokemon(@PathVariable Long id, @RequestBody PokemonManipulationRequest request) {
+        var pokemon = pokemonService.update(id, request);
+        return pokemon != null? ResponseEntity.ok(pokemon) : ResponseEntity.notFound().build();
+    }
+
 }

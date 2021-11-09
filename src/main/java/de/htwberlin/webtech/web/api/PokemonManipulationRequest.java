@@ -1,11 +1,11 @@
 package de.htwberlin.webtech.web.api;
 
-public class PokemonCreateRequest {
+public class PokemonManipulationRequest {
     private String name;
     private String region;
     private boolean evolved;
 
-    public PokemonCreateRequest(String name, String region, boolean evolved) {
+    public PokemonManipulationRequest(String name, String region, boolean evolved) {
         this.name = name;
         this.region = region;
         this.evolved = evolved;
