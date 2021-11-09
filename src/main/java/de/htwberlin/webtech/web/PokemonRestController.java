@@ -4,10 +4,7 @@ import de.htwberlin.webtech.service.PokemonService;
 import de.htwberlin.webtech.web.api.Pokemon;
 import de.htwberlin.webtech.web.api.PokemonCreateRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -25,6 +22,12 @@ public class PokemonRestController {
     @GetMapping(path = "/api/v1/allPokemon")
     public ResponseEntity<List<Pokemon>> fetchAllPokemon() {
         return ResponseEntity.ok(pokemonService.findAll());
+    }
+
+    @GetMapping(path = "/api/v1/allPokemon/{id}")
+    public ResponseEntity<Pokemon> fetchPokemonById(@PathVariable Long id) {
+        var pokemon = pokemonService.findById(id);
+        return pokemon != null? ResponseEntity.ok(pokemon) : ResponseEntity.notFound().build();
     }
 
     @PostMapping(path = "/api/v1/allPokemon")

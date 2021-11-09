@@ -17,11 +17,17 @@ public class PokemonService {
     public PokemonService(PokemonRepository pokemonRepository) {
         this.pokemonRepository = pokemonRepository;
     }
+
     public List<Pokemon> findAll() {
         List<PokemonEntity> allPokemon = pokemonRepository.findAll();
         return allPokemon.stream()
                 .map(this::transformEntity)
                 .collect(Collectors.toList());
+    }
+
+    public Pokemon findById(Long id) {
+        var pokemonEntity = pokemonRepository.findById(id);
+        return pokemonEntity.map(this::transformEntity).orElse(null);
     }
 
     public Pokemon create(PokemonCreateRequest request) {
