@@ -11,6 +11,8 @@ public class PokemonManipulationRequest {
         this.evolved = evolved;
     }
 
+    public PokemonManipulationRequest() {}
+
     public String getName() {
         return name;
     }
