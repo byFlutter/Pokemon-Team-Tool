@@ -4,13 +4,16 @@ import de.htwberlin.webtech.service.PokemonService;
 import de.htwberlin.webtech.web.api.Pokemon;
 import de.htwberlin.webtech.web.api.PokemonManipulationRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
+@Validated
 public class PokemonRestController {
 
    private final PokemonService pokemonService;
@@ -31,10 +34,13 @@ public class PokemonRestController {
     }
 
     @PostMapping(path = "/api/v1/allPokemon")
-    public ResponseEntity<Void> createPokemon(@RequestBody PokemonManipulationRequest request) throws URISyntaxException {
+    public ResponseEntity<Void> createPokemon(@Valid @RequestBody PokemonManipulationRequest request) throws URISyntaxException {
         var pokemon = pokemonService.create(request);
         URI uri = new URI("/api/v1/allPokemon/" + pokemon.getId());
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity
+                .created(uri)
+                .header("Access-Control-Expose-Headers", "Location")
+                .build();
     }
 
     @PutMapping(path = "/api/v1/allPokemon/{id}")
