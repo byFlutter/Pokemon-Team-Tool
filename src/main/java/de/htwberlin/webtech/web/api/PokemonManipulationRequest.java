@@ -11,11 +11,11 @@ public class PokemonManipulationRequest {
     @NotBlank(message = "Bitte gib eine Region an.")
     private String region;
 
-    /* @Pattern(
-            regexp = "MALE|FEMALE|DIVERSE|UNKOWN",
-            message = "Please provide 'MALE', 'FEMALE', 'DIVERSE' or 'UNKNOWN' for gender"
+    @Pattern(
+            regexp = "Normal|Feuer|Wasser|Pflanze|Elektro|Eis|Kampf|Gift|Boden|Flug|Psycho|Kaefer|Gestein|Geist|Drache|Unlicht|Stahl|Fee|Unbekannt",
+            message = "Bitte gib den Typ des Pokémon an."
     )
-    private String gender; */
+    private String type;
 
     private boolean evolved;
 
@@ -49,5 +49,13 @@ public class PokemonManipulationRequest {
 
     public void setEvolved(boolean evolved) {
         this.evolved = evolved;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

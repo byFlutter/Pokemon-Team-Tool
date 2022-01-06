@@ -19,13 +19,19 @@ public class PokemonEntity {
     @Column(name = "is_evolved")
     private Boolean evolved;
 
-    public PokemonEntity(String name, String region, Boolean evolved) {
+    @Column(name = "type")
+    @Enumerated(value = EnumType.STRING)
+    private Type type;
+
+    public PokemonEntity(String name, String region, Boolean evolved, Type type) {
         this.name = name;
         this.region = region;
         this.evolved = evolved;
+        this.type = type;
     }
 
-    protected PokemonEntity() {}
+    protected PokemonEntity() {
+    }
 
     public Long getId() {
         return id;
@@ -53,5 +59,13 @@ public class PokemonEntity {
 
     public void setEvolved(Boolean evolved) {
         this.evolved = evolved;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 }

@@ -1,5 +1,6 @@
 package de.htwberlin.webtech.service;
 
+import de.htwberlin.webtech.persistence.Type;
 import de.htwberlin.webtech.persistence.PokemonEntity;
 import de.htwberlin.webtech.persistence.PokemonRepository;
 import de.htwberlin.webtech.web.api.Pokemon;
@@ -31,7 +32,8 @@ public class PokemonService {
     }
 
     public Pokemon create(PokemonManipulationRequest request) {
-        var pokemonEntity = new PokemonEntity(request.getName(), request.getRegion(), request.isEvolved());
+        var type = Type.valueOf(request.getType());
+        var pokemonEntity = new PokemonEntity(request.getName(), request.getRegion(), request.isEvolved(), type);
         pokemonEntity = pokemonRepository.save(pokemonEntity);
         return transformEntity(pokemonEntity);
 
@@ -46,6 +48,7 @@ public class PokemonService {
         pokemonEntity.setName(request.getName());
         pokemonEntity.setRegion(request.getRegion());
         pokemonEntity.setEvolved(request.isEvolved());
+        pokemonEntity.setType(Type.valueOf(request.getType()));
         pokemonEntity = pokemonRepository.save(pokemonEntity);
 
         return transformEntity(pokemonEntity);
@@ -61,10 +64,12 @@ public class PokemonService {
     }
 
     private Pokemon transformEntity(PokemonEntity pokemonEntity) {
+        var type = pokemonEntity.getType() != null ? pokemonEntity.getType().name() : Type.Unbekannt.name();
         return new Pokemon(
                 pokemonEntity.getId(),
                 pokemonEntity.getName(),
                 pokemonEntity.getRegion(),
+                type,
                 pokemonEntity.getEvolved()
         );
     }
