@@ -23,11 +23,15 @@ public class PokemonEntity {
     @Enumerated(value = EnumType.STRING)
     private Type type;
 
-    public PokemonEntity(String name, String region, Boolean evolved, Type type) {
+    @Column(name = "level")
+    private Integer level;
+
+    public PokemonEntity(String name, String region, Boolean evolved, Type type, Integer level) {
         this.name = name;
         this.region = region;
         this.evolved = evolved;
         this.type = type;
+        this.level = level;
     }
 
     protected PokemonEntity() {
@@ -67,5 +71,13 @@ public class PokemonEntity {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

@@ -7,13 +7,15 @@ public class Pokemon {
     private String region;
     private String type;
     private boolean evolved;
+    private int level;
 
-    public Pokemon(long id, String name, String region, String type, boolean evolved) {
+    public Pokemon(long id, String name, String region, String type, boolean evolved, int level) {
         this.id = id;
         this.name = name;
         this.region = region;
         this.type = type;
         this.evolved = evolved;
+        this.level = level;
     }
 
         public long getId() {
@@ -54,5 +56,13 @@ public class Pokemon {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

@@ -1,5 +1,7 @@
 package de.htwberlin.webtech.web.api;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -16,6 +18,9 @@ public class PokemonManipulationRequest {
             message = "Bitte gib den Typ des Pokémon an."
     )
     private String type;
+
+    @Range(min = 1, max = 100, message = "Bitte gib ein Level zwischen 1-100 an.")
+    private int level;
 
     private boolean evolved;
 
@@ -57,5 +62,13 @@ public class PokemonManipulationRequest {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

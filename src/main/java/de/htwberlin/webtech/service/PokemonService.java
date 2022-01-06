@@ -33,7 +33,7 @@ public class PokemonService {
 
     public Pokemon create(PokemonManipulationRequest request) {
         var type = Type.valueOf(request.getType());
-        var pokemonEntity = new PokemonEntity(request.getName(), request.getRegion(), request.isEvolved(), type);
+        var pokemonEntity = new PokemonEntity(request.getName(), request.getRegion(), request.isEvolved(), type, request.getLevel());
         pokemonEntity = pokemonRepository.save(pokemonEntity);
         return transformEntity(pokemonEntity);
 
@@ -49,6 +49,7 @@ public class PokemonService {
         pokemonEntity.setRegion(request.getRegion());
         pokemonEntity.setEvolved(request.isEvolved());
         pokemonEntity.setType(Type.valueOf(request.getType()));
+        pokemonEntity.setLevel(request.getLevel());
         pokemonEntity = pokemonRepository.save(pokemonEntity);
 
         return transformEntity(pokemonEntity);
@@ -70,7 +71,8 @@ public class PokemonService {
                 pokemonEntity.getName(),
                 pokemonEntity.getRegion(),
                 type,
-                pokemonEntity.getEvolved()
+                pokemonEntity.getEvolved(),
+                pokemonEntity.getLevel()
         );
     }
 }
