@@ -1,20 +1,22 @@
 package de.htwberlin.webtech.web.api;
 
+import java.util.List;
+
 public class Team {
 
     private long id;
     private String name;
     private String game;
     private String type;
-    private Long pokemonId;
+    private List<Long> pokemonIds;
     // private Pokemon pokemon;
 
-    public Team(long id, String name, String game, String type, Long pokemonId) {
+    public Team(long id, String name, String game, String type, List<Long> pokemonIds) {
         this.id = id;
         this.name = name;
         this.game = game;
         this.type = type;
-        this.pokemonId = pokemonId;
+        this.pokemonIds = pokemonIds;
     }
 
     public long getId() {
@@ -49,11 +51,11 @@ public class Team {
         this.type = type;
     }
 
-    public Long getPokemonId() {
-        return pokemonId;
+    public List<Long> getPokemonIds() {
+        return pokemonIds;
     }
 
-    public void setPokemonId(Long pokemonId) {
-        this.pokemonId = pokemonId;
+    public void setPokemonIds(List<Long> pokemonIds) {
+        this.pokemonIds = pokemonIds;
     }
 }

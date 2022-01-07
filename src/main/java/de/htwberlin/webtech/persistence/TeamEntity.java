@@ -2,6 +2,8 @@ package de.htwberlin.webtech.persistence;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "teams")
 public class TeamEntity {
@@ -20,8 +22,8 @@ public class TeamEntity {
     @Enumerated(value = EnumType.STRING)
     private Type type;
 
-    @OneToOne(mappedBy = "team")
-    private PokemonEntity Pokemon;
+    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
+    private List<PokemonEntity> pokemons = new ArrayList<>();
 
     public TeamEntity(String name, String game, Type type) {
         this.name = name;
@@ -60,11 +62,11 @@ public class TeamEntity {
         this.type = type;
     }
 
-    public PokemonEntity getPokemon() {
-        return Pokemon;
+    public List<PokemonEntity> getPokemons() {
+        return pokemons;
     }
 
-    public void setPokemon(PokemonEntity pokemon) {
-        Pokemon = pokemon;
+    public void setPokemons(List<PokemonEntity> pokemons) {
+        this.pokemons = pokemons;
     }
 }

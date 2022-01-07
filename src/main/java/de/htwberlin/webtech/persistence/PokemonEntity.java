@@ -1,7 +1,16 @@
 package de.htwberlin.webtech.persistence;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.*;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "all_pokemon")
 public class PokemonEntity {
@@ -27,7 +36,7 @@ public class PokemonEntity {
     @Column(name = "level")
     private Integer level;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "team_id", referencedColumnName = "id")
     private TeamEntity team;
 

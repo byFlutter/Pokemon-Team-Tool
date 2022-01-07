@@ -57,6 +57,7 @@ public class PokemonService {
         pokemonEntity.setLevel(request.getLevel());
         // following line add by me
         pokemonEntity.setTeam(pokemonEntity.getTeam());
+        // pokemonEntity.setTeam(teamRepository.findById(request.getTeamId()));
         pokemonEntity = pokemonRepository.save(pokemonEntity);
 
         return transformEntity(pokemonEntity);
