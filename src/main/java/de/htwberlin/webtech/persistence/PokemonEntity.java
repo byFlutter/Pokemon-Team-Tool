@@ -1,5 +1,6 @@
 package de.htwberlin.webtech.persistence;
 
+import javax.persistence.CascadeType;
 import javax.persistence.*;
 
 @Entity(name = "all_pokemon")
@@ -26,7 +27,7 @@ public class PokemonEntity {
     @Column(name = "level")
     private Integer level;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "team_id", referencedColumnName = "id")
     private TeamEntity team;
 

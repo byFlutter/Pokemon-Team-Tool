@@ -6,12 +6,15 @@ public class Team {
     private String name;
     private String game;
     private String type;
+    private Long pokemonId;
+    // private Pokemon pokemon;
 
-    public Team(long id, String name, String game, String type) {
+    public Team(long id, String name, String game, String type, Long pokemonId) {
         this.id = id;
         this.name = name;
         this.game = game;
         this.type = type;
+        this.pokemonId = pokemonId;
     }
 
     public long getId() {
@@ -44,5 +47,13 @@ public class Team {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Long getPokemonId() {
+        return pokemonId;
+    }
+
+    public void setPokemonId(Long pokemonId) {
+        this.pokemonId = pokemonId;
     }
 }

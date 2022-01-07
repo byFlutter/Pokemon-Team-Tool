@@ -20,6 +20,9 @@ public class TeamEntity {
     @Enumerated(value = EnumType.STRING)
     private Type type;
 
+    @OneToOne(mappedBy = "team")
+    private PokemonEntity Pokemon;
+
     public TeamEntity(String name, String game, Type type) {
         this.name = name;
         this.game = game;
@@ -55,5 +58,13 @@ public class TeamEntity {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public PokemonEntity getPokemon() {
+        return Pokemon;
+    }
+
+    public void setPokemon(PokemonEntity pokemon) {
+        Pokemon = pokemon;
     }
 }
