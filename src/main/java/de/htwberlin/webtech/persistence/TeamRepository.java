@@ -5,10 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface PokemonRepository extends JpaRepository<PokemonEntity, Long> {
+    @Repository
+    public interface TeamRepository extends JpaRepository<TeamEntity, Long> {
 
-    // this.out
-   List<PokemonEntity> findAllByName(String name);
-
+        List<TeamEntity> findAllByName(String name);
 }

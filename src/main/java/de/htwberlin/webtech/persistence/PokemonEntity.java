@@ -26,19 +26,33 @@ public class PokemonEntity {
     @Column(name = "level")
     private Integer level;
 
-    public PokemonEntity(String name, String region, Boolean evolved, Type type, Integer level) {
+    @OneToOne
+    @JoinColumn(name = "team_id", referencedColumnName = "id")
+    private TeamEntity team;
+
+    // this.(m).in
+//    public PokemonEntity() {
+//    }
+
+    public PokemonEntity(String name, String region, Boolean evolved, Type type, Integer level, TeamEntity team) {
         this.name = name;
         this.region = region;
         this.evolved = evolved;
         this.type = type;
         this.level = level;
+        this.team = team;
     }
 
+    // this.(m).out
     protected PokemonEntity() {
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -79,5 +93,13 @@ public class PokemonEntity {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public TeamEntity getTeam() {
+        return team;
+    }
+
+    public void setTeam(TeamEntity team) {
+        this.team = team;
     }
 }

@@ -6,6 +6,10 @@ import de.htwberlin.webtech.web.api.PokemonManipulationRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -16,7 +20,7 @@ import java.util.List;
 @Validated
 public class PokemonRestController {
 
-   private final PokemonService pokemonService;
+    private final PokemonService pokemonService;
 
     public PokemonRestController(PokemonService pokemonService) {
         this.pokemonService = pokemonService;
@@ -27,10 +31,11 @@ public class PokemonRestController {
         return ResponseEntity.ok(pokemonService.findAll());
     }
 
+    // this.m.out
     @GetMapping(path = "/api/v1/allPokemon/{id}")
     public ResponseEntity<Pokemon> fetchPokemonById(@PathVariable Long id) {
         var pokemon = pokemonService.findById(id);
-        return pokemon != null? ResponseEntity.ok(pokemon) : ResponseEntity.notFound().build();
+        return pokemon != null ? ResponseEntity.ok(pokemon) : ResponseEntity.notFound().build();
     }
 
     @PostMapping(path = "/api/v1/allPokemon")
@@ -43,6 +48,7 @@ public class PokemonRestController {
                 .build();
     }
 
+    // out start
     @PutMapping(path = "/api/v1/allPokemon/{id}")
     public ResponseEntity<Pokemon> updatePokemon(@PathVariable Long id, @RequestBody PokemonManipulationRequest request) {
         var pokemon = pokemonService.update(id, request);
@@ -54,4 +60,5 @@ public class PokemonRestController {
         boolean successful = pokemonService.deleteById(id);
         return successful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
+    // out end
 }

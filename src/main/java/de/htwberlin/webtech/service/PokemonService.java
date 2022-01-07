@@ -1,8 +1,6 @@
 package de.htwberlin.webtech.service;
 
-import de.htwberlin.webtech.persistence.Type;
-import de.htwberlin.webtech.persistence.PokemonEntity;
-import de.htwberlin.webtech.persistence.PokemonRepository;
+import de.htwberlin.webtech.persistence.*;
 import de.htwberlin.webtech.web.api.Pokemon;
 import de.htwberlin.webtech.web.api.PokemonManipulationRequest;
 import org.springframework.stereotype.Service;
@@ -14,9 +12,13 @@ import java.util.stream.Collectors;
 public class PokemonService {
 
     private final PokemonRepository pokemonRepository;
+    private final TeamRepository teamRepository;
+    private final TeamTransformer teamTransformer;
 
-    public PokemonService(PokemonRepository pokemonRepository) {
+    public PokemonService(PokemonRepository pokemonRepository, TeamRepository teamRepository, TeamTransformer teamTransformer) {
         this.pokemonRepository = pokemonRepository;
+        this.teamRepository = teamRepository;
+        this.teamTransformer = teamTransformer;
     }
 
     public List<Pokemon> findAll() {
@@ -26,6 +28,7 @@ public class PokemonService {
                 .collect(Collectors.toList());
     }
 
+    // this.m.out
     public Pokemon findById(Long id) {
         var pokemonEntity = pokemonRepository.findById(id);
         return pokemonEntity.map(this::transformEntity).orElse(null);
@@ -33,11 +36,13 @@ public class PokemonService {
 
     public Pokemon create(PokemonManipulationRequest request) {
         var type = Type.valueOf(request.getType());
-        var pokemonEntity = new PokemonEntity(request.getName(), request.getRegion(), request.isEvolved(), type, request.getLevel());
+        var team = teamRepository.findById(request.getTeamId()).orElseThrow();
+        var pokemonEntity = new PokemonEntity(request.getName(), request.getRegion(), request.isEvolved(), type, request.getLevel(), team);
         pokemonEntity = pokemonRepository.save(pokemonEntity);
         return transformEntity(pokemonEntity);
-
     }
+
+    // out start
 
     public Pokemon update(Long id, PokemonManipulationRequest request) {
         var pokemonEntityOptional = pokemonRepository.findById(id);
@@ -50,6 +55,7 @@ public class PokemonService {
         pokemonEntity.setEvolved(request.isEvolved());
         pokemonEntity.setType(Type.valueOf(request.getType()));
         pokemonEntity.setLevel(request.getLevel());
+        // pokemonEntity.setTeam(request.getTeam());
         pokemonEntity = pokemonRepository.save(pokemonEntity);
 
         return transformEntity(pokemonEntity);
@@ -63,6 +69,7 @@ public class PokemonService {
         pokemonRepository.deleteById(id);
         return true;
     }
+    // out end
 
     private Pokemon transformEntity(PokemonEntity pokemonEntity) {
         var type = pokemonEntity.getType() != null ? pokemonEntity.getType().name() : Type.Unbekannt.name();
@@ -72,7 +79,7 @@ public class PokemonService {
                 pokemonEntity.getRegion(),
                 type,
                 pokemonEntity.getEvolved(),
-                pokemonEntity.getLevel()
-        );
+                pokemonEntity.getLevel(),
+                teamTransformer.transformEntity(pokemonEntity.getTeam()));
     }
 }

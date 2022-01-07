@@ -24,6 +24,9 @@ public class PokemonManipulationRequest {
 
     private boolean evolved;
 
+    private Long teamId;
+
+
     /* public PokemonManipulationRequest(String name, String region, boolean evolved) {
         this.name = name;
         this.region = region;
@@ -70,5 +73,13 @@ public class PokemonManipulationRequest {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public Long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
     }
 }

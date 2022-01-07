@@ -8,14 +8,16 @@ public class Pokemon {
     private String type;
     private boolean evolved;
     private int level;
+    private Team team;
 
-    public Pokemon(long id, String name, String region, String type, boolean evolved, int level) {
+    public Pokemon(long id, String name, String region, String type, boolean evolved, int level, Team team) {
         this.id = id;
         this.name = name;
         this.region = region;
         this.type = type;
         this.evolved = evolved;
         this.level = level;
+        this.team = team;
     }
 
         public long getId() {
@@ -64,5 +66,13 @@ public class Pokemon {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
