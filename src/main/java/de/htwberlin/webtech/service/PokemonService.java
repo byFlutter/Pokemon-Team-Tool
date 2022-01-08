@@ -36,7 +36,7 @@ public class PokemonService {
 
     public Pokemon create(PokemonManipulationRequest request) {
         var type = Type.valueOf(request.getType());
-        var team = teamRepository.findById(request.getTeamId()).orElseThrow();
+        var team = teamRepository.findById(request.getTeam()).orElseThrow();
         var pokemonEntity = new PokemonEntity(request.getName(), request.getRegion(), request.isEvolved(), type, request.getLevel(), team);
         pokemonEntity = pokemonRepository.save(pokemonEntity);
         return transformEntity(pokemonEntity);

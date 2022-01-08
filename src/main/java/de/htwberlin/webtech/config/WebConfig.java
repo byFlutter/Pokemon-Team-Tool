@@ -15,7 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedMethods("*")
                 .allowedOrigins(
                         "http://localhost:8081",
-                        "https://pokemon-team-tool-frontend.herokuapp.com/"
+                        "https://pokemon-team-tool-frontend.herokuapp.com"
                 );
     }
 }
