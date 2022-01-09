@@ -27,6 +27,7 @@ Spieler aus aller Welt!
 Zum Wechseln zwischen den Seiten Home, About, dem TeamDex und dem PokéDex lässt sich die vorhandene Navbar nutzen.
 Ebenso besteht die Möglichkeit, sich von den Buttons auf der Homepage und der Seite About als Option zum 
 einfachen Einstieg in das Tool leiten zu lassen.
+Auch über das Logo des Pokémon Team Tools als Teil der Navbar gelangst du jederzeit zum Home-Menü.
 
 Alternativ steht dir die Help-Page als Hilfe zur Seite, welche sich ebenfalls über die Navbar erreichen lässt.
 
