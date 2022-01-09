@@ -20,7 +20,7 @@ public class Pokemon {
         this.team = team;
     }
 
-        public long getId() {
+    public long getId() {
         return id;
     }
 

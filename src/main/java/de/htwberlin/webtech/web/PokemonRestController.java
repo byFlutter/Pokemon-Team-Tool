@@ -31,7 +31,6 @@ public class PokemonRestController {
         return ResponseEntity.ok(pokemonService.findAll());
     }
 
-    // this.m.out
     @GetMapping(path = "/api/v1/allPokemon/{id}")
     public ResponseEntity<Pokemon> fetchPokemonById(@PathVariable Long id) {
         var pokemon = pokemonService.findById(id);
@@ -48,7 +47,6 @@ public class PokemonRestController {
                 .build();
     }
 
-    // out start
     @PutMapping(path = "/api/v1/allPokemon/{id}")
     public ResponseEntity<Pokemon> updatePokemon(@PathVariable Long id, @RequestBody PokemonManipulationRequest request) {
         var pokemon = pokemonService.update(id, request);
@@ -60,5 +58,4 @@ public class PokemonRestController {
         boolean successful = pokemonService.deleteById(id);
         return successful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
-    // out end
 }

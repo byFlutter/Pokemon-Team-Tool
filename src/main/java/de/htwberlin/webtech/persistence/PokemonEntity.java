@@ -40,7 +40,6 @@ public class PokemonEntity {
     @JoinColumn(name = "team_id", referencedColumnName = "id")
     private TeamEntity team;
 
-    // this.(m).in
     public PokemonEntity() {
     }
 
@@ -53,17 +52,9 @@ public class PokemonEntity {
         this.team = team;
     }
 
-    // this.(m).out
-//    protected PokemonEntity() {
-//    }
-
     public Long getId() {
         return id;
     }
-
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     public String getName() {
         return name;

@@ -8,7 +8,6 @@ import java.util.List;
 @Repository
 public interface PokemonRepository extends JpaRepository<PokemonEntity, Long> {
 
-    // this.out
    List<PokemonEntity> findAllByName(String name);
 
 }

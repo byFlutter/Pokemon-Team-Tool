@@ -28,7 +28,6 @@ public class PokemonService {
                 .collect(Collectors.toList());
     }
 
-    // this.m.out
     public Pokemon findById(Long id) {
         var pokemonEntity = pokemonRepository.findById(id);
         return pokemonEntity.map(this::transformEntity).orElse(null);
@@ -41,8 +40,6 @@ public class PokemonService {
         pokemonEntity = pokemonRepository.save(pokemonEntity);
         return transformEntity(pokemonEntity);
     }
-
-    // out start
 
     public Pokemon update(Long id, PokemonManipulationRequest request) {
         var pokemonEntityOptional = pokemonRepository.findById(id);
@@ -71,7 +68,6 @@ public class PokemonService {
         pokemonRepository.deleteById(id);
         return true;
     }
-    // out end
 
     private Pokemon transformEntity(PokemonEntity pokemonEntity) {
         var type = pokemonEntity.getType() != null ? pokemonEntity.getType().name() : Type.Unbekannt.name();

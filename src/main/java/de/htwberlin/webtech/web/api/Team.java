@@ -9,7 +9,6 @@ public class Team {
     private String game;
     private String type;
     private List<Long> pokemonIds;
-    // private Pokemon pokemon;
 
     public Team(long id, String name, String game, String type, List<Long> pokemonIds) {
         this.id = id;
