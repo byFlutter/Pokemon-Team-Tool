@@ -1,7 +1,6 @@
 package de.htwberlin.webtech.web.api;
 
 import org.hibernate.validator.constraints.Range;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -24,6 +23,7 @@ public class PokemonManipulationRequest {
 
     private boolean evolved;
 
+    @Range(min = 1, max = 300, message = "Bitte gib eine valide TeamDexNummer an. Sie bestimmt das Team des Pokémon.")
     private Long team;
 
     public PokemonManipulationRequest() {}
