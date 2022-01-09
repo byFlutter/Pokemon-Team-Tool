@@ -26,7 +26,6 @@ public class PokemonManipulationRequest {
 
     private Long team;
 
-
     /* public PokemonManipulationRequest(String name, String region, boolean evolved) {
         this.name = name;
         this.region = region;

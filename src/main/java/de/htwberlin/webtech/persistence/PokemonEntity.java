@@ -41,8 +41,8 @@ public class PokemonEntity {
     private TeamEntity team;
 
     // this.(m).in
-//    public PokemonEntity() {
-//    }
+    public PokemonEntity() {
+    }
 
     public PokemonEntity(String name, String region, Boolean evolved, Type type, Integer level, TeamEntity team) {
         this.name = name;
@@ -54,16 +54,16 @@ public class PokemonEntity {
     }
 
     // this.(m).out
-    protected PokemonEntity() {
-    }
+//    protected PokemonEntity() {
+//    }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getName() {
         return name;
