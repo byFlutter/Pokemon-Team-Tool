@@ -69,7 +69,8 @@ class PokemonRestControllerTest {
                 .andExpect(jsonPath("$[1].team.id").value(2))
                 .andExpect(jsonPath("$[1].team.name").value("Legendäre Pokémon"))
                 .andExpect(jsonPath("$[1].team.game").value("Pokémon GO"))
-                .andExpect(jsonPath("$[1].team.type").value("Stahl"));;
+                .andExpect(jsonPath("$[1].team.type").value("Stahl"));
+        ;
     }
 
     @Test
@@ -104,8 +105,6 @@ class PokemonRestControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(header().exists("Location"))
                 .andExpect(header().string("Location", Matchers.equalTo(("/api/v1/allPokemon/" + pokemon.getId()))));
-//            .andExpect(header().string("Location", Matchers.containsString(Long.toString(team.getId()))));
-
     }
 
     @Test
